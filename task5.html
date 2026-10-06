@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    // Currying & Uncurrying
+
+console.log("1. Currying & Uncurrying");
+
+function add(a){
+    return function (b){
+        return function(c){
+            console.log("Sum :",a+b+c);
+        }
+    }
+}
+add(10)(20)(30);
+
+function empdetails (name){
+    return function (department){
+        return function(salary){
+            console.log(`Employee_Name : ${name}, Employee_Department : ${department}, Employee_Salary : ${salary}`);
+        }
+    }
+}
+empdetails("Ravi")("Bsc")("62000");
+
+function multiply(x){
+    return function(y){
+        return function(z){
+            console.log("Multiply :",x*y*z);
+        }
+    }
+}
+multiply(6)(3)(8)
+
+function curriedadd (a){
+    return function (b){
+        return function (c){
+            return a+b+c;
+        }
+    }
+}
+function uncurriedadd(curried){
+    return function(a,b,c){
+        return curried(a)(b)(c);
+    }
+}
+const uncurry = uncurriedadd(curriedadd);
+console.log(uncurry(3,4,5));
+
+function number(a){
+    return function(b){
+        return function(c){
+            return function(d){
+                console.log("Curried Version add 4 numbers:",a+b+c+d);
+            }
+        }
+    }
+}
+number(100)(50)(10)(20)
+function number1(a,b,c,d){
+    console.log("Uncurried version add 4 numbers :", a+b+c+d);
+}
+number1(100,50,10,20)
+
+// Spread Operator
+
+console.log("2. Spread Operator");
+
+let arr1 = [10,20,30,40,50];
+let arr2 = [60,70,80,90,100];
+let Spreadarr =[...arr1,...arr2];
+console.log("Concatenated Array :",Spreadarr);
+
+let arrnames1 = ["ravi","sarath","sundar"];
+let arrnames2 = ["raji", "maari", "suba"];
+let concatanmes =[...arrnames1, ...arrnames2];
+console.log("Concatenated Names :",concatanmes);
+
+let array1 = [1,2,3,4,5];
+let array2 =[...array1 , 6,true,"Hii"]
+console.log("Add_Values :", array2);
+
+let obj1 ={
+    name: "Suman",
+    dept : "Full Stack Developer",
+    salary : 50000
+}
+let obj2 ={
+    name1 : "Rooba",
+    dept1 : "Ai Developer",
+    salary1 : 60000
+}
+let concatobj = {...obj1,...obj2}
+console.log("Concatenated Object :", concatobj);
+
+let empobj ={
+    name : "Vidya",
+    designation : "HR",
+    company : "Stackly"
+}
+let empobj2 ={...empobj, salary : 100000}
+console.log("Updated Employee Object :", empobj2);
+
+let object1 ={
+    personname : "Dhoni",
+    personage : 40,
+    persondept : "Cricket"
+}
+let object2={
+    carname : "BMW",
+    carcolor : "Black",
+    carprice : 100000
+}
+let combineobj ={...object1, ...object2}
+console.log("Combined Object :", combineobj);
+
+let array3 = [1,2,3,4,5];
+let array4 = [6,7,8,9,10];
+let reversearray =[...array3,...array4]
+reversearray.reverse();
+console.log("Reversed Array :", reversearray);
+
+// rest operator
+
+console.log("3. Rest Operator");
+
+function rest(a,b,...c){
+    console.log(a,b,c);
+}
+rest(10,20,30,40,50,60,70,80,90,100);
+
+function student(name, department,...marks){
+    console.log(`Name : ${name}, Department : ${department}, Marks : ${marks}`);
+}
+student("Ravikumar","Fullstack Developer", 100, 90, 80, 70, 60);
+
+function addition(a,b,...numbers){
+    console.log("First Number :",a);
+    console.log("Second Number :",b);
+    console.log("Remaining Numbers :",numbers);
+}
+addition(10,20,30,40,50,60,70,80,90,100);
+
+function colors(a,b,...c){
+    console.log("Fifth color:", c[5]);
+}
+colors("Red","Green","Blue","Yellow","Black","White","Pink","Orange");
+
+function productdetails(product, price,...features){
+    console.log("Product Name :", product);
+    console.log("Product Price :", price);
+    console.log("Product Features :", features);
+}
+productdetails("Laptop", 100000, "16GB RAM", "1TB SSD", "Intel i7");
+
+function storevalues (a,b,...values){
+    console.log("First Value :", a, "Second Value :", b, "Remaining Values :", values);
+}
+storevalues(1,2,3,4,5,6,7,8,9,10);
+
+// Array Destructuring
+
+console.log("4. Array Destructuring");
+
+let arr=[10,20,30,40];
+let [a,b,c,d]=arr;
+console.log("Array Destructuring :", a,b,c,d);
+
+let studentdetails=["Simbu", "Biology",100];
+let[name,group, marks]=studentdetails;
+console.log("Student Name :", name);
+console.log("Student Group :", group);
+console.log("Student Marks :", marks);
+
+let array5=[12,14,67,89,90];
+let[a1,b1,c1,d1,e1]=array5;
+console.log("First value:",a1, "Fourth values:",d1);
+
+let nested =[1,2,3,[4,5,6,[7,8,9,[10]]]];
+let [a2,b2,c2,[d2,e2,f2,[g2,h2,i2,[j2]]]] = nested;
+console.log(a2,b2,c2,d2,e2,f2,g2,h2,i2,j2);
+
+let nestedarray =[1,2,3,[4,5,6,[7,8,9,[10]]]];
+let [a3,b3,c3,[d3,e3,f3,[g3,h3,i3,[j3]]]] = nestedarray;
+console.log("4 value:", d3);
+console.log("10 value:", j3);
+console.log("7 value:", g3);
+
+// Object Destructuring
+
+console.log("5. Object Destructuring");
+
+let obj ={
+    username : "Arjun",
+    department : "IT",
+    salary : 50000
+}
+let {username, department, salary} = obj;
+console.log("Employee Name :", username);
+console.log("Employee Department :", department);
+console.log("Employee Salary :", salary);
+
+let studentobj={
+    studentname : "sudharshan",
+    studentdept : "ECE",
+    studentCGPA : 8.0
+}
+let {studentname, studentdept, studentCGPA} = studentobj;
+console.log("Student Name :", studentname);
+console.log("Student Department :", studentdept);
+console.log("Student CGPA :", studentCGPA);
+
+let product1 ={
+    productname : "BMW Car",
+    productprice : 1000000,
+    productcolor : "Black",
+    productmodel : "2024",
+    productfeatures : ["Leather Seats", "Sunroof", "Navigation System"]
+}
+let {productname, productprice, productfeatures} = product1;
+console.log("Product Name :", productname);
+console.log("Product Price :", productprice);
+console.log("Product Features :", productfeatures);
+
+let nestedemp ={
+    empname : "Vijay",
+    empdept : "IT",
+    empsalary : 50000,
+    Team :{
+        teamname : "Stackly",
+        teamlead : "Arjun",
+        teammembers : ["Krish", "Praba", "Depthi"]
+    }
+}
+let {empname, Team:{teammembers}} = nestedemp;
+console.log("Employee Name:",empname);
+console.log("Team Members:",teammembers);
+
+let nestedcompany ={
+    companyname : "Stackly",
+    companylocation : "Chennai",
+    companyservice :" IT Solutions",
+    department :{
+        deptname : "Development",
+        depthead : "Arjun",
+        deptmembers : ["Krish", "Praba", "Depthi"],
+        employee :{
+            empsname : "Shakeer sheik",
+            empssalary : 50000,
+            empsdesignation : "Manager"
+        }
+    }
+}
+let {department : {employee :{empsname}}} =nestedcompany;
+console.log("Employee Name:",empsname);
+
+// Array Manipulation
+
+console.log("6. Array Manipulation");
+
+let fruits = ["Apple", "Banana", "Mango", "Orange", "Grapes"];
+fruits.push("Pineapple", "Watermelon", "Papaya");
+console.log("Total Fruits :", fruits);
+
+let nums = [10,20,30,40,50];
+nums.pop();
+console.log("Pop :", nums);
+
+let studentsNames = ["Arjun", "Krish", "Depthi", "Reena", "Angela"];
+studentsNames.shift();
+console.log("Shift :", studentsNames);
+
+let numbers = [10,20,30,40]
+numbers.unshift(5,15);
+console.log("Unshift :", numbers);
+
+let array6 = [10,20,30,40,50];
+array6.splice(2,1,100);
+console.log("Splice :",array6);
+
+let array7 =[22,44,66,88,90,45];
+array7.splice(2,2);
+console.log("Splice Remove:",array7);
+
+let array8 = [1,2,3,4,8];
+array8.splice(3,1,4,5,6,7);
+console.log("Middle Splice add :", array8);
+
+let array9 = [10,20,60,80,50];
+array9.splice(2,2,30,40,60);
+console.log("Add and remove using splice :", array9);
+
+let studentarr = ["Arjun", "Krish", "Depthi", "Kathir", "Rocky", "Reena", "Angela"];
+studentarr.splice(3,1);
+console.log("Remove Splice :", studentarr);
+
+let shoppingcart = ["Shirt", "Pant", "Shoes", "Watch", "Belt"];
+shoppingcart.push("Sunglasses", "Wallet");
+shoppingcart.pop();
+shoppingcart.shift();
+shoppingcart.unshift("T-shirt");
+console.log("Shopping Cart Items :", shoppingcart);
+
+// Array Merge & Extraction Methods
+
+console.log("7. Array Merge & Extraction Methods");
+
+let array10 = [10,20,30,40,50];
+let array11 = [60,70,80,90,100];
+let totalarray = array10.concat(array11);
+console.log("Concatenated Array :", totalarray);
+
+let arr3 =[10,20,30,40,50];
+let arr4 =["Apple", "Banana", "Mango"];
+let arr5 =[1,2,3,4,5];
+let MergedArray = arr3.concat(arr4).concat(arr5);
+console.log("Merged Array :", MergedArray);
+
+let array12 = [10,20,30,40,50,60,70,80];
+let sliced =array12.slice(2,6);
+console.log("Sliced Array :", sliced);
+
+let array13 =["Arjun","Reena", "Kathir", "Rocky", "Naveen", "Vijay", "Radhi", "Teju"];
+let sliced1=array13.slice(0,3)
+console.log("First 3 names :",sliced1);
+
+let nestedarray1 = [1,2,[3,4,[5]]]
+let single =nestedarray1.flat(2)
+console.log("Single level array :", single);
+
+let nestedarray2 = [1,2,3,[4,5,6,[7,8,9,[10,11,12]]]];
+let Remove = nestedarray2.flat(Infinity)
+console.log("Remove Nesting Array :", Remove);
+
+let array14 = ["Dhoni", "Arjun", 10, 40,50,"Depthi",1,2,3, "Kathir", "Heart Beat", 99,80,70];
+array14.splice(2,3,"Renna");
+let slicedarray = array14.slice(7,9);
+console.log("Spliced Array:", array14);
+console.log("Sliced Array:" , slicedarray);
+
+// Search & Other Array Methods
+
+console.log("8.Search & Other Array Methods");
+
+let array15 = [10,20,40,50,60,90,70,30];
+let check = array15.includes(50);
+console.log("50 is present in array :", check);
+
+let array16 = [10,20,30,30,40,50];
+let firstoccurance = array16.indexOf(30);
+console.log("First Occurance :", firstoccurance);
+
+let array17 = [10,20,30,40,50,50,60];
+let lastoccurance = array17.lastIndexOf(50);
+console.log("Last Occurance :", lastoccurance);
+
+let array18 = [10,90,40,20,60,30,50];
+let order = array18.sort()
+console.log("Sort:", order);
+
+let array19 = [10,20,30,40,50];
+let reverse = array19.reverse()
+console.log("Reverse order :", reverse);
+   </script> 
+</body>
+</html>
